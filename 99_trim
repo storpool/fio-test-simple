@@ -1,0 +1,9 @@
+[global]
+ioengine=libaio
+direct=1
+
+[trim]
+iodepth=32
+bs=16M
+rw=trim
+filename=DESTINATION

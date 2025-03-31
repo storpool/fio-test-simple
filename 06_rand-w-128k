@@ -1,0 +1,14 @@
+[global]
+ioengine=libaio
+direct=1
+sync=0
+norandommap
+randrepeat=0
+
+[rand-w-128k-64]
+rw=randwrite
+bs=128k
+iodepth=64
+time_based
+runtime=1m
+filename=DESTINATION

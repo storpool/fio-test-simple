@@ -1,0 +1,9 @@
+[Unit]
+Description=FIO server
+
+[Service]
+ExecStart=/usr/bin/fio --server
+
+[Install]
+WantedBy=multi-user.target
+

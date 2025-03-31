@@ -1,0 +1,9 @@
+[global]
+ioengine=libaio
+direct=1
+
+[fill]
+iodepth=16
+bs=1M
+rw=write
+filename=DESTINATION
