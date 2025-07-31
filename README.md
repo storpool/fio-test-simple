@@ -19,11 +19,11 @@ Single VM test
 
 3. Update the fio job description files with the test disk path. For example if the test disk is /dev/vdb run:
 
-        # sed -i 's|DESTINATION|/dev/vdb|' [0-9][0-9]_*
+        # sed -i '/^filename=/ c filename=/dev/vdb' [0-9][0-9]_*
 
   Verify the result:
 
-        # egrep filename= *
+        # egrep ^filename= *
 
 4. Fill the test drive
 
@@ -74,7 +74,7 @@ One VM may not be able to generate sufficient test traffic to measure the storag
 
   On the control VM, update the fio job description files with the test disk path. For example if the test disk is /dev/vdb run:
 
-        # sed -i 's|DESTINATION|/dev/vdb|' [0-9][0-9]_*
+        # sed -i '/^filename=/ c filename=/dev/vdb' [0-9][0-9]_*
 
   Note: This device name will be used on all test VMs. Make sure the test disk has the same name on all test VMs.
 
