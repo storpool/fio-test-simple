@@ -11,13 +11,13 @@ Single VM test
 
 2. Attach a test disk.
 
-   Create a test disk and attach it to the test VM. Recommended disk size 100G or larger. 
+   Create a test disk and attach it to the test VM. Recommended disk size 100 GB or larger. 
 
    List the available block devices with:
 
         # lsblk
 
-3. Update the fio job description files with the test disk path. For example if the test disk is /dev/vdb run:
+3. Update the fio job description files with the test disk path. For example, if the test disk is /dev/vdb run:
 
         # sed -i '/^filename=/ c filename=/dev/vdb' [0-9][0-9]_*
 
@@ -27,7 +27,7 @@ Single VM test
 
 4. Fill the test drive
 
-  Before run fio tests, fill teh test drive with random data. Running fio tests on non-populated devices can provide false results.
+  Before running fio tests, fill the test drive with random data. Running fio tests on non-populated devices can provide false results.
 
         # fio 00_fill
 
@@ -42,15 +42,15 @@ Single VM test
 Run parallel tests from multiple VMs
 =====================================
 
-One VM may not be able to generate sufficient test traffic to measure the storage system performance. Some tests may require multiple parallel test jobs running from multiple VMs. These are typically IOPS and bandwidth tests.
+One VM may not generate sufficient test traffic to measure the storage system's performance. Some tests may require multiple parallel test jobs running from multiple VMs. These are typically IOPS and bandwidth tests.
 
 1. Create test VMs. 
 
-  Depending on the storage system you may need to run between 3 and 20 or more VMs. Each test VM shall have one test drive attached. The test drives shall be with the same size and attached as the same device name - e.g. /dev/vdb.
+  Depending on the storage system, you may need to run between 3 and 20 or more VMs. Each test VM shall have one test drive attached. The test drives shall be with the same size and attached as the same device name - e.g., /dev/vdb.
 
 2. Install and start the fio service.
 
-  On each test VM install fio.service
+  On each test VM, install fio.service
 
         # apt install fio
         # cp fio.service /etc/systemd/system && systemctl enable --now fio.service
@@ -59,9 +59,9 @@ One VM may not be able to generate sufficient test traffic to measure the storag
 
 3. Prepare a control VM.
 
-  Use one of the test VMs as control VM. Copy this directory to the control VM.
+  Use one of the test VMs as the control VM. Copy this directory to the control VM.
 
-  On the control VM create a list of the test VM IP addresses:
+  On the control VM, create a list of the test VM IP addresses:
 
         # cat vm_list
         10.0.0.3
@@ -72,7 +72,7 @@ One VM may not be able to generate sufficient test traffic to measure the storag
 
   The control VM can also be a test VM, so include its IP address in the list too.
 
-  On the control VM, update the fio job description files with the test disk path. For example if the test disk is /dev/vdb run:
+  On the control VM, update the fio job description files with the test disk path. For example, if the test disk is /dev/vdb run:
 
         # sed -i '/^filename=/ c filename=/dev/vdb' [0-9][0-9]_*
 
@@ -82,11 +82,11 @@ One VM may not be able to generate sufficient test traffic to measure the storag
 
    On the control VM run:
 
-        # fio --client hosts 00_fill
+        # fio --client vm_list 00_fill
 
 5. Run the parallel test.
 
-  On the control VM run the selected fio test:
+  On the control VM, run the selected fio test:
 
         # fio --client vm_list 03_rand-r-4k-64
 
