@@ -19,23 +19,23 @@ Single VM test
 
 3. Update the fio job description files with the test disk path. For example, if the test disk is /dev/vdb run:
 
-        # sed -i '/^filename=/ c filename=/dev/vdb' [0-9][0-9]_*
+        # sed -i '/^filename=/ c filename=/dev/vdb' *.fio
 
   Verify the result:
 
-        # egrep ^filename= *
+        # egrep ^filename= *.fio
 
 4. Fill the test drive
 
   Before running fio tests, fill the test drive with random data. Running fio tests on non-populated devices can provide false results.
 
-        # fio 00_fill
+        # fio 00_fill.fio
 
 4. Run fio test jobs. 
 
   Run a selected test job. For example:
 
-        # fio 01_lat-r-4k-1
+        # fio 01_lat-r-4k-1.fio
 
 
 
@@ -74,7 +74,7 @@ One VM may not generate sufficient test traffic to measure the storage system's 
 
   On the control VM, update the fio job description files with the test disk path. For example, if the test disk is /dev/vdb run:
 
-        # sed -i '/^filename=/ c filename=/dev/vdb' [0-9][0-9]_*
+        # sed -i '/^filename=/ c filename=/dev/vdb' *.fio
 
   Note: This device name will be used on all test VMs. Make sure the test disk has the same name on all test VMs.
 
@@ -82,13 +82,13 @@ One VM may not generate sufficient test traffic to measure the storage system's 
 
    On the control VM run:
 
-        # fio --client vm_list 00_fill
+        # fio --client vm_list 00_fill.fio
 
 5. Run the parallel test.
 
   On the control VM, run the selected fio test:
 
-        # fio --client vm_list 03_rand-r-4k-64
+        # fio --client vm_list 03_rand-r-4k-64.fio
 
   The report will include the aggregated result from all test VMs.
 
