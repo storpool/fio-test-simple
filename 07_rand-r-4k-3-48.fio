@@ -4,6 +4,7 @@ direct=1
 sync=0
 norandommap
 randrepeat=0
+group_reporting
 
 [rand-r-4k-3-48]
 rw=randread

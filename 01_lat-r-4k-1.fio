@@ -4,6 +4,7 @@ direct=1
 sync=0
 norandommap
 randrepeat=0
+cpus_allowed=1
 
 [lat-r-4k-1]
 rw=randread
